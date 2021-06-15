@@ -1,81 +1,126 @@
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
 aside {
     width: 20%;
-    max-width: 200px;
+    min-width: 150px;
+    /* max-width: 200px; */
     display: inline-block;
+    margin: 0;
+    padding: 0px 10px;
 }
 
 article {
     float: right;
     width: 80%;
-    margin: 0px;
+    height: 100%;
+    margin: 0;
 }
 
 #headshotimage {
     margin: 50px auto 0px auto;
     display: block;
-    border-radius: 50%;
     border: solid black 2px;
-    width: 100%;
+    width: 70%;
     height: auto;
     object-fit: cover;
     object-position: 0px 0px;
 }
 
 #name {
-    margin: 20px 0px 5px 0px;
+    margin: 20px 0px 2.5px 0px;
     text-align: center;
-    font-size: 2vw;
-    /* font-size: 30px; */
+    font-size: 25px;
 }
 
 #jobTitle {
-    margin: 5px 0px 0px 0px;
+    margin: 2.5px 0px 0px 0px;
     text-align: center;
-    font-size: 1.25em;
+    font-size: 18px;
 }
 
+footer {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+    font-size: 14px;
+}
 
-/* Navigation menu */
+footer a {
+    color: #000;
+    text-decoration: none;
+}
 
 
 /* Sized for large screens */
 
-#menu {
-    width: 80%;
-    margin: 0px 0px 0px auto;
-    background: #fff;
+@media screen and (min-width: 641px) {
+    #menu {
+        width: 80%;
+        margin: 0px 0px 0px auto;
+        background: #fff;
+    }
+    #menuItems {
+        display: flex;
+    }
+    #menuItems a {
+        flex-grow: 1;
+        flex-basis: 0;
+        padding: 10px;
+        color: #000;
+        text-decoration: none;
+        text-align: center;
+    }
+    #menuItems a:hover {
+        background: #4874eb75;
+    }
+    #menu label,
+    #hamburger {
+        float: right;
+        display: none;
+    }
 }
 
-#menuItems {
-    display: flex;
-}
 
-#menuItems a {
-    flex-grow: 1;
-    flex-basis: 0;
-    padding: 10px;
-    color: #000;
-    text-decoration: none;
-    text-align: center;
-}
-
-#menuItems a:hover {
-    background: #4874eb75;
-}
-
-#menu label,
-#hamburger {
-    float: right;
-    display: none;
-}
+/* Sized for medium screens */
 
 
-/* Navigation menu resized for small screens */
+/* @media screen and (max-width: 1023px) {} */
 
-@media screen and (max-width: 768px) {
+
+/* Sized for small screens */
+
+
+/* @media screen and (max-width: 800px) {} */
+
+
+/* Sized for very small screens */
+
+@media screen and (max-width: 640px) {
+    article {
+        width: 100%;
+        float: none;
+        padding: 10px auto;
+    }
     #menu {
         width: 100%;
         margin: 0px;
+        /* display: block; */
+        float: right;
     }
     #menuItems a {
         float: right;
@@ -83,20 +128,42 @@ article {
         display: block;
         width: 100%;
         border-top: 1px solid #333;
+        color: #000;
+        text-decoration: none;
+        text-align: center;
+        padding: 4px 0px 4px 0px;
     }
     #menu label {
-        display: inline-block;
-        color: #000;
+        float: right;
+        /* display: inline-block; */
+        color: rgb(145, 145, 145);
         background: #fff;
         font-style: normal;
-        font-size: 1.2em;
+        font-size: 1.6em;
         padding: 10px;
     }
     #menuItems {
         display: none;
     }
+    #menu input {
+        display: none;
+    }
     #menu input:checked~#menuItems {
         display: block;
-        margin-top: 50px;
+        /* margin-top: 50px; */
+    }
+    #sidebar {
+        width: 100%;
+        min-width: none;
+        max-width: 100%;
+    }
+    #headshotimage {
+        margin: 50px auto 0px auto;
+        display: block;
+        border: solid black 2px;
+        width: 70%;
+        height: auto;
+        object-fit: cover;
+        object-position: 0px 0px;
     }
 }
