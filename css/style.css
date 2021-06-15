@@ -1,0 +1,102 @@
+aside {
+    width: 20%;
+    max-width: 200px;
+    display: inline-block;
+}
+
+article {
+    float: right;
+    width: 80%;
+    margin: 0px;
+}
+
+#headshotimage {
+    margin: 50px auto 0px auto;
+    display: block;
+    border-radius: 50%;
+    border: solid black 2px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: 0px 0px;
+}
+
+#name {
+    margin: 20px 0px 5px 0px;
+    text-align: center;
+    font-size: 2vw;
+    /* font-size: 30px; */
+}
+
+#jobTitle {
+    margin: 5px 0px 0px 0px;
+    text-align: center;
+    font-size: 1.25em;
+}
+
+
+/* Navigation menu */
+
+
+/* Sized for large screens */
+
+#menu {
+    width: 80%;
+    margin: 0px 0px 0px auto;
+    background: #fff;
+}
+
+#menuItems {
+    display: flex;
+}
+
+#menuItems a {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+}
+
+#menuItems a:hover {
+    background: #4874eb75;
+}
+
+#menu label,
+#hamburger {
+    float: right;
+    display: none;
+}
+
+
+/* Navigation menu resized for small screens */
+
+@media screen and (max-width: 768px) {
+    #menu {
+        width: 100%;
+        margin: 0px;
+    }
+    #menuItems a {
+        float: right;
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        border-top: 1px solid #333;
+    }
+    #menu label {
+        display: inline-block;
+        color: #000;
+        background: #fff;
+        font-style: normal;
+        font-size: 1.2em;
+        padding: 10px;
+    }
+    #menuItems {
+        display: none;
+    }
+    #menu input:checked~#menuItems {
+        display: block;
+        margin-top: 50px;
+    }
+}
