@@ -20,47 +20,114 @@
                     <a href="index.html">about me</a>
                     <a href="portfolio.html">portfolio</a>
                     <a href="resume.html">resume</a>
-                    <a href="contact.html">contact me</a>
                 </div>
             </nav>
         </header>
-        <aside class="align-content-center" id="sidebar">
-            <img src="images/Headshot.jpg" id="headshotimage" />
-            <p id="name">Jonathan Lee</p>
-            <p id="jobTitle">Software Developer</p>
-        </aside>
-        <article class="row" id="content">
-            <div class="col-5 offset-1">
-                <img src="images/superheroProject.jpg" class="projectImage" id="projectImage1" />
-                <p class="projectDesc" id="projectDesc1">Superhero Project</p>
+        <main class="row">
+            <div class="col-2" id="headshotSection">
+                <img src="images/Headshot.jpg" id="headshotimage" />
+                <p id="name">Jonathan Lee</p>
+                <p id="jobTitle">Software Developer</p>
+                <p id="phone">612.321.8745</p>
+                <p id="email">
+                    <a href="mailto:jonathan@jonathanjlee.com">jonathan@jonathanjlee.com</a
+            >
+          </p>
+        </div>
+        <div class="col-10" id="contentArea">
+          <div class="row projectRow">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-5">
+              <img
+                src="images/superheroProject.jpg"
+                class="projectImage"
+                id="projectImage1"
+              />
+              <p class="projectDesc" id="projectDesc1">
+                A Spring Boot web application that takes user input to record
+                superhero sightings and allows the user to search the database
+                using various datapoints.
+              </p>
+              <ul class="projectTech" id="projectTech1">
+                <li>Java</li>
+                <li>MySQL</li>
+                <li>JDBC Template</li>
+                <li>Spring Boot</li>
+                <li>Thymeleaf</li>
+              </ul>
             </div>
-            <div class="col-5">
-                <img src="images/vendingMachineProject.jpg" class="projectImage" id="projectImage2" />
-                <p class="projectDesc" id="projectDesc2">Vending Machine Project</p>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-5">
+              <img
+                src="images/vendingMachineProject.jpg"
+                class="projectImage"
+                id="projectImage2"
+              />
+              <p class="projectDesc" id="projectDesc2">
+                A vending machine website that uses API calls to sell items to a
+                user. The site will post inventory updates and handle exceptions
+                in the event of insufficient inventory or funds.
+              </p>
+              <ul class="projectTech" id="projectTech2">
+                <li>Java</li>
+                <li>jQuery</li>
+                <li>REST APIs</li>
+                <li>Ajax</li>
+              </ul>
             </div>
-            <div class="col-5 offset-1">
-                <img src="images/weatherAppProject.jpg" class="projectImage" id="projectImage3" />
-                <p class="projectDesc" id="projectDesc3">Weather App Project</p>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-5">
+              <img
+                src="images/weatherAppProject.jpg"
+                class="projectImage"
+                id="projectImage3"
+              />
+              <p class="projectDesc" id="projectDesc3">Weather App Project</p>
             </div>
-            <div class="col-5">
-                <img src="images/bullsAndCowsProject.jpg" class="projectImage" id="projectImage4" />
-                <p class="projectDesc" id="projectDesc4">Bulls & Cows Project</p>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-5">
+              <img
+                src="images/bullsAndCowsProject.jpg"
+                class="projectImage"
+                id="projectImage4"
+              />
+              <p class="projectDesc" id="projectDesc4">Bulls & Cows Project</p>
             </div>
-            <div class="col-5 offset-1">
-                <img src="images/hotelReservationsProject.jpg" class="projectImage" id="projectImage5" />
-                <p class="projectDesc" id="projectDesc5">
-                    Hotel Reservations Project
-                </p>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-5">
+              <img
+                src="images/hotelReservationsProject.jpg"
+                class="projectImage"
+                id="projectImage5"
+              />
+              <p class="projectDesc" id="projectDesc5">
+                Hotel Reservations Project
+              </p>
             </div>
-            <div class="col-5">
-                <img src="images/flooringMasteryProject.jpg" class="projectImage" id="projectImage6" />
-                <p class="projectDesc" id="projectDesc6">Flooring Mastery Project</p>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-5">
+              <img
+                src="images/flooringMasteryProject.jpg"
+                class="projectImage"
+                id="projectImage6"
+              />
+              <p class="projectDesc" id="projectDesc6">
+                Flooring Mastery Project
+              </p>
             </div>
-        </article>
+          </div>
+        </div>
+      </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"
+      integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+      integrity="undefined"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
