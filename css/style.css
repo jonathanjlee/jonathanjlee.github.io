@@ -64,7 +64,7 @@ main {
 
 .projectDesc {
     margin: 0;
-    padding: 0;
+    padding: 10px 20px;
     display: block;
     color: #000;
     text-align: justify;
@@ -72,6 +72,7 @@ main {
 }
 
 .projectTech {
+    padding-left: 60px;
     font-size: 0.65em;
 }
 
@@ -122,16 +123,9 @@ main {
 /* Sized for very small screens */
 
 @media screen and (max-width: 640px) {
-    main {
-        width: 100%;
-        float: none;
-        padding: 10px auto;
-        height: 100vh;
-    }
     #menu {
         width: 100%;
         margin: 0px;
-        /* display: block; */
         float: right;
     }
     #menuItems a {
@@ -149,7 +143,6 @@ main {
         float: right;
         /* display: inline-block; */
         color: rgb(145, 145, 145);
-        background: #fff;
         font-style: normal;
         font-size: 1.6em;
         padding: 10px;
