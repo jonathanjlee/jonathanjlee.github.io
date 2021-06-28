@@ -48,6 +48,11 @@ main {
     font-size: 0.8em;
 }
 
+#aboutMeSection {
+    text-align: justify;
+    padding: 70px 150px 0px 150px;
+}
+
 .projectRow {
     margin: 0px;
     padding: 0px auto;
