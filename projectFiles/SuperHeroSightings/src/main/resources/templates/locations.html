@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>H.E.R.O.</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- H.E.R.O. header -->
+        <div class="row justify-content-center" id="header">
+            <p>
+                <span class="letter">H</span>ero <span class="letter">E</span>ducation and <span class="letter">R</span>elationship
+                <span class="letter">O</span>rganization
+            </p>
+        </div>
+        <div class="row full-height">
+            <!-- menuBar -->
+            <div class="col-md-2" id="menuBar">
+                <div>
+                    <a href="/" class="col-12 btn btn-info menuButton">Home</a>
+                </div>
+                <div>
+                    <a href="sightings" class="col-12 btn btn-info menuButton">Sightings</a>
+                </div>
+                <div>
+                    <a href="supes" class="col-12 btn btn-info menuButton">Supes</a>
+                </div>
+                <div>
+                    <a href="abilities" class="col-12 btn btn-info menuButton">Abilities</a>
+                </div>
+                <div>
+                    <a href="orgs" class="col-12 btn btn-info menuButton">Teams</a>
+                </div>
+                <div>
+                    <a href="locations" class="col-12 btn btn-info menuButton">Locations</a>
+                </div>
+            </div>
+            <!-- contentArea -->
+            <div class="col-md-10" id="content">
+                <div class="row">
+                    <!-- location table -->
+                    <div class="col-md-6 text-center">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="location : ${locations}">
+                                    <td class="locationNameField">
+                                        <a href="#" data-toggle="modal" data-target="#locationDetailsModal" th:attrappend="data-target=${location.locationId}">
+                                            <span th:text="${location.name}">Location
+                                                Name</span>
+                                        </a>
+                                        <!-- location details modal -->
+                                        <div class="modal fade" id="locationDetailsModal" th:attrappend="id=${location.locationId}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">
+                                                            Location Details
+                                                        </h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-4 text-right">
+                                                                    Location Name
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <span th:text="${location.name}">display
+                                                                        name</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4 text-right">
+                                                                    Description
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <span th:text="${location.description}">display
+                                                                        description</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-4 text-right">
+                                                                    Address
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <span th:text="${location.address.street}">display
+                                                                        street</span><br />
+                                                                    <span th:text="${location.address.city}">display
+                                                                        city</span>,
+                                                                    <span th:text="${location.address.state}">display
+                                                                        state</span>
+                                                                    <span th:text="${location.address.zipCode}">display
+                                                                        zipCode</span><br />
+                                                                    <span th:text="${location.address.coordinates}">display
+                                                                        coordinates</span>,
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end of modal -->
+                                    </td>
+                                    <td>
+                                        <a href="#" th:href="@{/editLocation(id=${location.locationId})}">Edit</a> |
+                                        <a href="#" data-toggle="modal" th:attr="data-target='#locationDeleteModal' + ${location.locationId}">Delete</a>
+                                        <!-- confirm delete modal -->
+                                        <div class="modal fade" th:attr="id='locationDeleteModal' + ${location.locationId}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">
+                                                            Confirm delete</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <p>Are you sure you want to delete "
+                                                                    <strong><span
+                                                                            th:text="${location.name}">display
+                                                                            name</span></strong>"?</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-2 offset-8">
+                                                                    <a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <a href="#" data-dismiss="modal">Cancel</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- add location form -->
+                    <div class="col-md-6 text-center border border-dark">
+                        <div class="col-12">
+                            <span class="h3">Add Location</span>
+                        </div>
+                        <div class="col-12 m-1 text-center" th:if="${!locationErrors.isEmpty()}">
+                            <p class="alert alert-danger" th:each="error : ${locationErrors}" th:text="${error.message}">Error message</p>
+                        </div>
+                        <div class="col-12 m-1 text-center" th:if="${!addressErrors.isEmpty()}">
+                            <p class="alert alert-danger" th:each="error : ${addressErrors}" th:text="${error.message}">Error message</p>
+                        </div>
+                        <form action="addLocation" method="POST">
+                            <div class="form-group row">
+                                <label for="name" class="col-3 col-form-label">Location:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="name" id="name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="description" class="col-3 col-form-label">Description:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="description" id="description" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="street" class="col-3 col-form-label">Street:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="street" id="street" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="city" class="col-3 col-form-label">City:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="city" id="city" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="state" class="col-3 col-form-label">State:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="state" id="state" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="zipCode" class="col-3 col-form-label">Zip
+                                    Code:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="zipCode" id="zipCode" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="coordinates" class="col-3 col-form-label">Coordinates:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="coordinates" id="coordinates" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-info">
+                                    Add New Location
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>

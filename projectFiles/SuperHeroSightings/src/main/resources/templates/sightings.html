@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>H.E.R.O.</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- H.E.R.O. header -->
+        <div class="row justify-content-center" id="header">
+            <p><span class="letter">H</span>ero <span class="letter">E</span>ducation and <span class="letter">R</span>elationship <span class="letter">O</span>rganization</p>
+        </div>
+        <div class="row full-height">
+            <!-- menuBar -->
+            <div class="col-md-2" id="menuBar">
+                <div>
+                    <a href="/" class="col-12 btn btn-info menuButton">Home</a>
+                </div>
+                <div>
+                    <a href="sightings" class="col-12 btn btn-info menuButton">Sightings</a>
+                </div>
+                <div>
+                    <a href="supes" class="col-12 btn btn-info menuButton">Supes</a>
+                </div>
+                <div>
+                    <a href="abilities" class="col-12 btn btn-info menuButton">Abilities</a>
+                </div>
+                <div>
+                    <a href="teams" class="col-12 btn btn-info menuButton">Teams</a>
+                </div>
+                <div>
+                    <a href="locations" class="col-12 btn btn-info menuButton">Locations</a>
+                </div>
+            </div>
+            <!-- contentArea -->
+            <div class="col-md-10" id="content">
+                <!-- add sighting form -->
+                <div class="row">
+                    <div class="col-12 text-center border border-dark">
+                        <div class="col-12">
+                            <span class="h3">Add Sighting</span>
+                        </div>
+                        <form action="addSighting" method="POST">
+                            <div class="form-group row justify-content-between">
+                                <div class="col-3">
+                                    <label for="dateOfSighting" class="row">Date: </label>
+                                    <div class="row justify-content-center">
+                                        <input type="date" name="dateOfSighting" id="dateOfSighting" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <label for="supeSighted" class="row">Supe:
+                                    </label>
+                                    <div class="row justify-content-center">
+                                        <select name="supeSighted" id="supeSighted" class="form-control">
+                                            <option th:each="supe : ${supes}"
+                                                th:value="${supe.supeId}"
+                                                th:text="${supe.name}">Supe name
+                                            </option>
+                                        </select>
+                                        <a href="#" th:href="supes">Add new
+                                            supe</a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <label for="locationSighted" class="row">Location: </label>
+                                    <div class="row justify-content-center">
+                                        <select name="locationSighted" id="locationSighted" class="form-control">
+                                            <option
+                                                th:each="location : ${locations}"
+                                                th:value="${location.locationId}"
+                                                th:text="${location.name}">
+                                                Location name</option>
+                                        </select>
+                                        <a href="#" th:href="locations">Add new
+                                            location</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-info">Add
+                                    New Sighting</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- search by date -->
+                <div class="row">
+                    <div class="col-8 offset-6">
+                        <form>
+                            <div class="form-group row">
+                                <label for="dateSearch" class="col-3 col-form-label">Search by
+                                    date: </label>
+                                <div class="col-4">
+                                    <input type="date" name="dateSearch" id="dateSearch" class="form-control">
+                                </div>
+                                <div class="col-2">
+                                    <input type="hidden" name="dateSearch" th:value="${dateSearch}" />
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#searchSightingsModal" onclick="openSearchModal()">Search</button>
+                                    <th:block th:replace="_modals :: modal('searchSightingsModal')">
+                                        modal
+                                    </th:block>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- sighting table -->
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Supe</th>
+                                <th>Location</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="sighting : ${sightings}">
+                                <td class="dateOfSightingField">
+                                    <span th:text="${#temporals.format(sighting.date, 'MM-dd-yyyy')}">Sighting
+                                        date</span>
+                                </td>
+                                <td class="supeSightedField">
+                                    <span th:text="${sighting.supe.name}">Sighting
+                                        supe</span>
+                                </td>
+                                <td class="locationSightedField">
+                                    <span th:text="${sighting.location.name}">Sighting
+                                        location</span>
+                                </td>
+                                <td>
+                                    <a href="#" th:href="@{/editSighting(id=${sighting.sightingId})}">Edit</a> |
+                                    <a href="#" data-toggle="modal" th:attr="data-target='#sightingDeleteModal' + ${sighting.sightingId}">Delete</a>
+                                    <!-- confirm delete modal -->
+                                    <div class="modal fade" th:attr="id='sightingDeleteModal' + ${sighting.sightingId}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">
+                                                        Confirm delete</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body ">
+                                                    <div class="container ">
+                                                        <div class="row ">
+                                                            <p>Are you sure you want to delete
+                                                                <strong><span
+                                                                        th:text="${sighting.supe.name}">display
+                                                                        name</span></strong>'s sighting on
+                                                                <strong><span
+                                                                        th:text="${#temporals.format(sighting.date, 'E dd, MMM yyyy')}">display
+                                                                        date</span></strong>?
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-2 offset-8">
+                                                                <a href="#" th:href="@{/deleteSighting(id=${sighting.sightingId})}">Delete</a>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <a href="#" data-dismiss="modal">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of confirm delete modal -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script th:src="@{/js/home.js}"></script>
+</body>
+
+</html>

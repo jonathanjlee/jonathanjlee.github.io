@@ -1,0 +1,4 @@
+com\sg\bullsandcows\service\BACServiceImplTest.class
+com\sg\bullsandcows\data\BACGameDBDaoTest.class
+com\sg\bullsandcows\data\BACGuessDBDaoTest.class
+com\sg\bullsandcows\data\BACRoundDBDaoTest.class

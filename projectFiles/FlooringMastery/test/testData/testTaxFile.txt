@@ -1,0 +1,2 @@
+State,StateName,TaxRate
+MN,Minnesota,6.875

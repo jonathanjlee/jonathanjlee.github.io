@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h4 class="modal-title">Sightings on <span th:text="${#temporals.format(date, 'MM-dd-yyyy')}">date</span>
+    </h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Supe</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sighting : ${sightings}">
+                        <td class="dateOfSightingField">
+                            <span th:text="${#temporals.format(sighting.date, 'MM-dd-yyyy')}">Sighting
+                                date</span>
+                        </td>
+                        <td class="supeSightedField">
+                            <span th:text="${sighting.supe.name}">Sighting
+                                supe</span>
+                        </td>
+                        <td class="locationSightedField">
+                            <span th:text="${sighting.location.name}">Sighting
+                                location</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+</div>

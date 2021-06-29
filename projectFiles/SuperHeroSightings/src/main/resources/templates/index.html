@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>H.E.R.O.</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- H.E.R.O. header -->
+        <div class="row justify-content-center" id="header">
+            <p>
+                <span class="letter">H</span>ero <span class="letter">E</span>ducation and <span class="letter">R</span>elationship
+                <span class="letter">O</span>rganization
+            </p>
+        </div>
+        <div class="row full-height">
+            <!-- menuBar -->
+            <div class="col-md-2" id="menuBar">
+                <div>
+                    <a href="/" class="col-12 btn btn-info menuButton">Home</a>
+                </div>
+                <div>
+                    <a href="sightings" class="col-12 btn btn-info menuButton">Sightings</a>
+                </div>
+                <div>
+                    <a href="supes" class="col-12 btn btn-info menuButton">Supes</a>
+                </div>
+                <div>
+                    <a href="abilities" class="col-12 btn btn-info menuButton">Abilities</a>
+                </div>
+                <div>
+                    <a href="orgs" class="col-12 btn btn-info menuButton">Teams</a>
+                </div>
+                <div>
+                    <a href="locations" class="col-12 btn btn-info menuButton">Locations</a>
+                </div>
+            </div>
+            <!-- contentArea -->
+            <div class="col-md-10" id="contentArea">
+                <div class="row justify-content-center" id="introStory">
+                    <div class="col-md-11">
+                        <p>
+                            In an effort to keep track of the Supes running around America, we have compiled a database for you to register Supe sightings. Please be as accurate as possible so we can keep track of their movements.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="recentSightings">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Supe</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="sighting : ${sightings}">
+                                    <td class="dateOfSightingField">
+                                        <span th:text="${#temporals.format(sighting.date, 'MM-dd-yyyy')}">Sighting
+                                            date</span>
+                                    </td>
+                                    <td class="supeSightedField">
+                                        <span th:text="${sighting.supe.name}">Sighting
+                                            supe</span>
+                                    </td>
+                                    <td class="locationSightedField">
+                                        <span th:text="${sighting.location.name}">Sighting
+                                            location</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3LHWifEcQP8wm41isKWna_ps4PqG-S5M&callback=initMap&v=weekly" async></script>
+    <script type="text/javascript" th:src="@{/js/home.js}" async defer></script>
+</body>
+
+</html>

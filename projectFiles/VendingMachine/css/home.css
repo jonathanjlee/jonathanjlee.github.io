@@ -1,0 +1,115 @@
+/* settings for a smaller screen */
+
+@media screen and (max-width: 991px) {
+    .selection {
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 5px;
+        margin: 10px 5px;
+    }
+    .itemName {
+        text-align: center;
+        height: 110px;
+        margin-bottom: 10px;
+        word-wrap: normal;
+        width: auto;
+    }
+    .form-control {
+        width: 150px;
+    }
+}
+
+
+/* settings for a regular screen */
+
+@media screen and (min-width: 992px) {
+    .selection {
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 5px;
+        margin: 10px 20px;
+    }
+    .itemName {
+        text-align: center;
+        height: 90px;
+        margin-bottom: 10px;
+        word-wrap: normal;
+        width: auto;
+    }
+    .form-control {
+        width: 200px;
+    }
+}
+
+body {
+    background-color: #E8EBEF;
+}
+
+.selection {
+    background-color: #BEC7D4;
+}
+
+hr {
+    border: 1px solid black;
+    width: 80%;
+}
+
+#row1 {
+    margin-top: 20px;
+}
+
+.itemNumber {
+    padding-left: 3px;
+}
+
+.itemPrice {
+    margin-bottom: 30px;
+}
+
+.itemQty {
+    text-align: center;
+}
+
+
+/* machine panel settings */
+
+.display {
+    text-align: center;
+    border-color: #000;
+}
+
+.btn {
+    background-color: #405A7C;
+    border-color: #405A7C;
+}
+
+#moneyDiv {
+    padding-top: 15px;
+}
+
+#totalInButtonsRow1 {
+    margin-bottom: 5px;
+}
+
+.moneyButton {
+    width: 125px;
+}
+
+#purchaseButton {
+    margin-top: 10px;
+}
+
+#userSelection {
+    width: 140px;
+    margin-left: 10px;
+}
+
+#totalChange {
+    height: 80px;
+    overflow-wrap: break-word;
+}
+
+
+/* div {
+    border-style: dotted;
+} */

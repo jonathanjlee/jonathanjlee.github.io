@@ -1,0 +1,2 @@
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Jonathan Lee,CA,25.00,Tile,150.00,3.50,4.15,525.00,622.50,286.88,1434.38

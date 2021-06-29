@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>H.E.R.O.</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- H.E.R.O. header -->
+        <div class="row justify-content-center" id="header">
+            <p>
+                <span class="letter">H</span>ero <span class="letter">E</span>ducation and <span class="letter">R</span>elationship
+                <span class="letter">O</span>rganization
+            </p>
+        </div>
+        <div class="row full-height">
+            <!-- menuBar -->
+            <div class="col-md-2" id="menuBar">
+                <div>
+                    <a href="/" class="col-12 btn btn-info menuButton">Home</a>
+                </div>
+                <div>
+                    <a href="sightings" class="col-12 btn btn-info menuButton">Sightings</a>
+                </div>
+                <div>
+                    <a href="supes" class="col-12 btn btn-info menuButton">Supes</a>
+                </div>
+                <div>
+                    <a href="abilities" class="col-12 btn btn-info menuButton">Abilities</a>
+                </div>
+                <div>
+                    <a href="orgs" class="col-12 btn btn-info menuButton">Teams</a>
+                </div>
+                <div>
+                    <a href="locations" class="col-12 btn btn-info menuButton">Locations</a>
+                </div>
+            </div>
+            <!-- contentArea -->
+            <div class="col-md-10" id="content">
+                <div class="row">
+                    <!-- supe table -->
+                    <div class="col-md-6 text-center">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Supe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="supe : ${supes}">
+                                    <td class="supeNameField">
+                                        <a href="#" data-toggle="modal" data-target="#supeDetailsModal" th:attrappend="data-target=${supe.supeId}">
+                                            <span th:text="${supe.name}">Supe
+                                                Name</span>
+                                        </a>
+                                        <!-- supe details modal -->
+                                        <div class="modal fade" id="supeDetailsModal" th:attrappend="id=${supe.supeId}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">
+                                                            Supe Details</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <!-- main content for modal goes here -->
+                                                            <div class="row">
+                                                                <div class="col-4 text-right">
+                                                                    Supe name:
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <span th:text="${supe.name}">display
+                                                                        name</span>
+                                                                </div>
+                                                                <div class="col-4 text-right">
+                                                                    Description:
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <span th:text="${supe.description}">display
+                                                                        description</span>
+                                                                </div>
+                                                                <div class="col-4 text-right">
+                                                                    Abilities:
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <ul th:each="ability : ${supe.abilities}">
+                                                                        <li th:text="${ability.name}">
+                                                                            display name
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- display a Supe's teams -->
+                                                                <div class="col-4 text-right">
+                                                                    Team(s):
+                                                                </div>
+                                                                <div class="col-8 text-left">
+                                                                    <span th:each="org : ${orgs}">
+                                                                        <ul
+                                                                            th:each="member : ${org.members}">
+                                                                            <li th:if="${supe.supeId}==${member.supeId}"
+                                                                                th:text="${org.name}">
+                                                                                display
+                                                                                org
+                                                                                name
+                                                                            </li>
+                                                                        </ul>
+                                                                    </span>
+                                                                </div>
+                                                                <!-- end of team display -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end of details modal -->
+                                    </td>
+                                    <td>
+                                        <a href="#" th:href="@{/editSupe(id=${supe.supeId})}">Edit</a> |
+                                        <a href="#" data-toggle="modal" th:attr="data-target='#supeDeleteModal' + ${supe.supeId}">Delete</a>
+                                        <!-- confirm delete modal -->
+                                        <div class="modal fade" th:attr="id='supeDeleteModal' + ${supe.supeId}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">
+                                                            Confirm delete</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body ">
+                                                        <div class="container ">
+                                                            <div class="row ">
+                                                                <p>Are you sure you want to delete "
+                                                                    <strong><span
+                                                                            th:text="${supe.name}">display
+                                                                            name</span></strong>"?
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-2 offset-8">
+                                                                    <a href="#" th:href="@{/deleteSupe(id=${supe.supeId})}">Delete</a>
+                                                                </div>
+                                                                <div class="col-2">
+                                                                    <a href="#" data-dismiss="modal">Cancel</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end of confirm delete modal -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- add supe form -->
+                    <div class="col-md-6 text-center border border-dark">
+                        <div class="col-12">
+                            <span class="h3">Add Supe</span>
+                        </div>
+                        <form action="addSupe" method="POST">
+                            <div class="form-group row">
+                                <label for="name" class="col-3 col-form-label">Name: </label>
+                                <div class="col-9">
+                                    <input type="text" name="name" id="name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="description" class="col-3 col-form-label">Description:
+                                </label>
+                                <div class="col-9">
+                                    <input type="text" name="description" id="description" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="abilityId" class="col-3 col-form-label">Abilities:
+                                </label>
+                                <div class="col-9">
+                                    <!-- abilities selection -->
+                                    <select name="abilityId" id="abilityId" class="form-control" multiple>
+                                        <option th:each="ability : ${abilities}"
+                                            th:value="${ability.abilityId}"
+                                            th:text="${ability.name}">
+                                            Ability Name
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-info">
+                                    Add New Supe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>

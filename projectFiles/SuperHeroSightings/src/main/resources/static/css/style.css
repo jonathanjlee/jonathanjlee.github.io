@@ -1,0 +1,76 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#header p {
+    font-size: 40px;
+}
+
+.letter {
+    font-size: 90px;
+}
+
+.menuButton {
+    margin: 3px 0px;
+}
+
+
+/* map */
+
+#map {
+    height: 100%;
+}
+
+
+/* forms */
+
+form {
+    margin: 15px;
+}
+
+label {
+    text-align: left;
+}
+
+
+/* abilities */
+
+.abilityNameField {
+    text-align: left;
+}
+
+
+/* locations */
+
+.locationNameField {
+    text-align: left;
+}
+
+
+/* supes */
+
+.supeNameField {
+    text-align: left;
+}
+
+
+/* teams */
+
+.orgNameField {
+    text-align: left;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 10px;
+}
+
+li {
+    line-height: 5px;
+    padding: 0px;
+    margin: 0px;
+}
